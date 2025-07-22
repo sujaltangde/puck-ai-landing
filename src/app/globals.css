@@ -19,8 +19,42 @@
   }
 }
 
+/* Base styles to prevent hydration mismatches */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* Ensure consistent rendering */
+  scroll-behavior: smooth;
+  /* Prevent any transition issues */
+  transition: none;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  /* Prevent any transition issues */
+  transition: none;
+}
+
+/* Suppress LocatorJS errors */
+script[src*="locatorjs"] {
+  display: none;
+}
+
+/* Ensure consistent font rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent FOUC (Flash of Unstyled Content) */
+html {
+  visibility: visible;
+  opacity: 1;
 }
