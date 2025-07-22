@@ -9,7 +9,6 @@ export default function DemoVideo() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [userInteracted, setUserInteracted] = useState(false);
   const videoRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<any>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,12 +58,7 @@ export default function DemoVideo() {
     };
   }, []);
 
-  const handlePlayPause = () => {
-    setUserInteracted(true); // Mark as interacted when user clicks play
-    setIsPlaying((prev) => !prev);
-  };
-
-  const handleError = (error: any) => {
+  const handleError = (error: unknown) => {
     console.log("Video playback error:", error);
     setIsPlaying(false);
   };
@@ -89,7 +83,6 @@ export default function DemoVideo() {
           {/* React Player */}
           <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
             <ReactPlayer
-              ref={playerRef}
               src="/media/videos/puck_demo.mp4"
               playing={isPlaying}
               controls
