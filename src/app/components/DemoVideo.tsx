@@ -1,14 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Play, Pause, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReactPlayer from "react-player";
 import { downloadZip } from "./Hero";
 
 export default function DemoVideo() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const [userInteracted, setUserInteracted] = useState(false);
   const videoRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<any>(null);
@@ -17,13 +15,11 @@ export default function DemoVideo() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
           // Only autoplay if user has interacted with the page
           if (userInteracted) {
             setIsPlaying(true);
           }
         } else {
-          setIsVisible(false);
           setIsPlaying(false);
         }
       },
@@ -33,13 +29,14 @@ export default function DemoVideo() {
       }
     );
 
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
+    const currentVideoRef = videoRef.current;
+    if (currentVideoRef) {
+      observer.observe(currentVideoRef);
     }
 
     return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
+      if (currentVideoRef) {
+        observer.unobserve(currentVideoRef);
       }
     };
   }, [userInteracted]);

@@ -51,7 +51,7 @@ const logos = [
     svg: (
       <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8">
         <rect width="80" height="32" rx="6" fill="currentColor" className="text-gray-700" />
-        <text x="40" y="21" textAnchor="middle" fontSize="16" fill="white" fontFamily="Arial, sans-serif">L'ORÉAL</text>
+        <text x="40" y="21" textAnchor="middle" fontSize="16" fill="white" fontFamily="Arial, sans-serif">L&apos;ORÉAL</text>
       </svg>
     ),
   },
